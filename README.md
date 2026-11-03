@@ -1,6 +1,5 @@
 # ذاكرة — شات بوت RAG (مصر في ذاكرة المستقبل)
-
-## التشغيل (5 دقايق، من غير GPU ومن غير فلوس)
+## التشغيل (5 دقايق، من غير GPU)
 ```bash
 python -m venv venv && source venv/bin/activate        # ويندوز: venv\Scripts\activate
 pip install -r requirements.txt
@@ -18,6 +17,7 @@ uvicorn app:app --reload --port 8000                    # شغّل الـ API  (
 |---|---|
 | Gemini (free tier) | مفتاح من Google AI Studio -> `GEMINI_API_KEY=` |
 | Groq (free tier) | مفتاح من console.groq.com -> `GROQ_API_KEY=` |
+| OpenRouter (موديلات مجانية) | مفتاح من openrouter.ai، وفي `.env`: `LLM_PROVIDER=compat` و`LLM_BASE_URL=https://openrouter.ai/api/v1` و`LLM_API_KEY=` و`LLM_MODEL=اسم_موديل_مجاني` |
 | Ollama (محلي) | `ollama pull qwen2.5:3b` (محتاج ~8GB RAM) |
 | من غير LLM | الشات بوت يعرض المقاطع المسترجعة مباشرة (مناسب لتجربة الفرونت) |
 
@@ -30,7 +30,7 @@ uvicorn app:app --reload --port 8000                    # شغّل الـ API  (
 `GET /health` · `GET /crafts` (قائمة الحرف للاقتراحات) · `POST /reindex` (هيدر `X-Admin-Token` لو `ADMIN_TOKEN` متحدد)
 الأفاتار بعدين يكلّم نفس `/chat` ويأخد `answer` يحوّله لصوت.
 
-## لما فريق الداتا يضيف بيانات
+## عندما يضيف فريق الداتا بيانات
 - الملف الأصلي **مش بيتعدّل**. التنضيف بيتم في الذاكرة وقت الفهرسة.
 - `WATCH_DATA=1` (الافتراضي): السيرفر يلاحظ تعديل الملف ويعيد الفهرسة لوحده (الفهرس القديم يفضل شغال لو حصل خطأ).
 - أو يدويًا: `python ingest.py` أو `POST /reindex`. الـ embeddings بتتحسب للقطع الجديدة/المعدلة بس.
