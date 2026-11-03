@@ -25,7 +25,7 @@ uvicorn app:app --reload --port 8000                    # شغّل الـ API  (
 
 ## عقد الـ API (ده اللي الفرونت/الباك بيشتغلوا عليه)
 `POST /chat` ← `{"question": "ازاي بيعملوا المشبك الدمياطي؟", "session_id": "user-1"}`
-→ `{"answer": "...[1]", "sources": [{"id","title","publisher","date","url"}], "references": [{"n","craft","governorate","section","record_id","score"}], "found": true, "mode": "gemini"}`
+→ → {"answer": "...[1]", "sources": [{"n","id","title","publisher","date","url"}], "references": [...], "found": true, "mode": "..."}
 
 `GET /health` · `GET /crafts` (قائمة الحرف للاقتراحات) · `POST /reindex` (هيدر `X-Admin-Token` لو `ADMIN_TOKEN` متحدد)
 الأفاتار بعدين يكلّم نفس `/chat` ويأخد `answer` يحوّله لصوت.
